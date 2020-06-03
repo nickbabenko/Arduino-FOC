@@ -13,8 +13,8 @@ enum Pullup{
 };
 
 enum Quadrature{
-  ENABLE, // CPR = 4xPPR
-  DISABLE // CPR = PPR
+  ON, // CPR = 4xPPR
+  OFF // CPR = PPR
 };
 
 class Encoder: public Sensor{

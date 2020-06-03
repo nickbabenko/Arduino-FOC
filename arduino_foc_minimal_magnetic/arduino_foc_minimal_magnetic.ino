@@ -1,13 +1,19 @@
 #include "SimpleFOC.h"
-// // software interrupt library
-// #include <PciManager.h>
-// #include <PciListenerImp.h>
+
+
+//
+// ------------------------------------------------------------
+//
+// Not tested yet
+//
+//-------------------------------------------------------------
+//
 
 //  BLDCMotor( int phA, int phB, int phC, int pp, int en)
 //  - phA, phB, phC - motor A,B,C phase pwm pins
 //  - pp            - pole pair number
 //  - enable pin    - (optional input)
-BLDCMotor motor = BLDCMotor(9, 5, 6, 11);
+BLDCMotor motor = BLDCMotor(9, 5, 6, 11, 8);
 
 
 // MagneticSensor(int cs, float _cpr, int _angle_register)

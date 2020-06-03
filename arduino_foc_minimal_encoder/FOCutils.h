@@ -5,6 +5,7 @@
 
 // sign function
 #define sign(a) ( ( (a) < 0 )  ?  -1   : ( (a) > 0 ) )
+#define _round(x) ((x)>=0?(long)((x)+0.5):(long)((x)-0.5))
 // utility defines
 #define _2_SQRT3 1.15470053838
 #define _SQRT3 1.73205080757

@@ -4,13 +4,13 @@
 //  - phA, phB, phC - motor A,B,C phase pwm pins
 //  - pp            - pole pair number
 //  - enable pin    - (optional input)
-BLDCMotor motor = BLDCMotor(9, 10, 11, 11);
+BLDCMotor motor = BLDCMotor(9, 5, 6, 11, 8);
 
 //Encoder(int encA, int encB , int cpr, int index)
 //    - encA, encB    - encoder A and B pins
 //    - ppr           - impulses per rotation  (cpr=ppr*4)
 //    - index pin     - (optional input)
-Encoder encoder = Encoder(2, 3, 2048);
+Encoder encoder = Encoder(2, A3, 8192);
 // interrupt routine intialisation
 void doA(){encoder.handleA();}
 void doB(){encoder.handleB();}
@@ -36,7 +36,7 @@ void setup() {
   // ControlType::voltage
   // ControlType::velocity
   // ControlType::angle
-  motor.controller = ControlType::angle;
+  motor.controller = ControlType::voltage;
 
   // contoller configuration based on the controll type 
   // velocity PI controller parameters
@@ -54,8 +54,8 @@ void setup() {
   motor.LPF_velocity.Tf = 0.0;
 
   // angle loop controller
-  motor.P_angle.P = 3;
-  motor.P_angle.velocity_limit = 10;
+  motor.P_angle.P = 20;
+  motor.P_angle.velocity_limit = 50;
 
   // link the motor to the sensor
   motor.linkSensor(&encoder);
@@ -94,7 +94,7 @@ void setup() {
 }
 
 // target velocity variable
-float target = 0;
+float target = 2;
 // loop stats variables
 unsigned long  t = 0;
 long timestamp = _micros();
@@ -109,6 +109,8 @@ void loop() {
 
   // keep track of loop number
   t++;
+  
+  serialEvent();
 }
 
 // Serial communication callback
